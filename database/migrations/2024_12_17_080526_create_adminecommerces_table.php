@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderReturnsTable extends Migration
+class CreateAdminecommercesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateOrderReturnsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_returns', function (Blueprint $table) {
+        Schema::create('adminecommerces', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('order_id');
-            $table->string('photo');
-            $table->text('reason');
-            $table->string('refund_transfer');
-            $table->char('status', 1)->default(0)->comment('0: pending, 1: approve, 2: cancel');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateOrderReturnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_returns');
+        Schema::dropIfExists('adminecommerces');
     }
 }

@@ -20,6 +20,7 @@ class CreateOrdersTable extends Migration
             $table->string('customer_name');
             $table->string('customer_phone');
             $table->string('customer_address');
+            $table->date('order_date');
             $table->unsignedBigInteger('district_id');
             $table->integer('subtotal');
             $table->timestamps();

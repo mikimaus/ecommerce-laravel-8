@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldStatusToProductsTable extends Migration
+class CreateCourriersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddFieldStatusToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->boolean('status')->default(true)->after('weight');
+        Schema::create('courriers', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->decimal('price');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddFieldStatusToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('status');
-        });
+        Schema::dropIfExists('courriers');
     }
 }

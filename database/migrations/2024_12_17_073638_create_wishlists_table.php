@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldTrackingNumberToOrdersTable extends Migration
+class CreateWishlistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddFieldTrackingNumberToOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->string('tracking_number')->nullable()->after('status');
+        Schema::create('wishlists', function (Blueprint $table) {
+            $table->unsignedBigInteger('seller_id');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('product_category_id');
         });
     }
 
@@ -25,8 +27,6 @@ class AddFieldTrackingNumberToOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('tracking_number');
-        });
+        Schema::dropIfExists('wishlists');
     }
 }
